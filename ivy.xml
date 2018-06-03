@@ -39,10 +39,5 @@
         
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
 		<dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.5"/>
-<<<<<<< HEAD
-		
-=======
->>>>>>> 5d36177b712a6d446311b89bd0de5845e5b7a3a2
-        
     </dependencies>
 </ivy-module>
