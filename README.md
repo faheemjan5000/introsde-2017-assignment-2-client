@@ -7,6 +7,11 @@ Server Code done by
 Name : Danish Asghar - Cheema  
 Email : danishasghar.cheema@unitn.it  
 
+Server heroku Base ULR: https://introsde-asgn2-server.herokuapp.com  
+Server Git ripo: https://github.com/danishc/introsde-2017-assignment-2-server  
+
+Client Git riop: https://github.com/faheemjan5000/introsde-2017-assignment-2-client  
+
 ### About the Code:
 
 I created one Client Class named as "Asgn3Client" which has  different methods and main method defined. like reading person, updating person,deleting person, printing preferences etc etc. there is one log file which has all the ouput saved.there is the Build file which has all the targets written and ivy.xml file which has different dependencies needed for my project.    
@@ -42,3 +47,9 @@ and activiy id.
 
 `Method #12 (Extra): getBestPersonPreference(PersonId(1) => List<Preference>` //it returns the best preference (or preferences if there   are more) of the Person identified by {id}  from his/her list of preferences.    
                   
+### execuation
+clone or download the code
+```
+ant execute.client
+```
+
