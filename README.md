@@ -48,7 +48,9 @@ and activiy id.
 `Method #12 (Extra): getBestPersonPreference(PersonId(1) => List<Preference>` //it returns the best preference (or preferences if there   are more) of the Person identified by {id}  from his/her list of preferences.    
                   
 ### execuation
-clone or download the code
+1) clone or download the code
+2) make sure to change the BASEURL in Client class if your server Url is diffent from the one given the link above.
+from the project directory run the following command. it will generate new log file.
 ```
 ant execute.client
 ```
