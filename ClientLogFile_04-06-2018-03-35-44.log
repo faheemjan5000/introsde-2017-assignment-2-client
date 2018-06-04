@@ -1,0 +1,517 @@
+Server URL:  https://introsde-asgn2-server.herokuapp.com
+STEP 3.1 XML => Request #1 GET BASE_URL/person Accept: APPLICATION/XML
+Total number of people is: 5
+First Persin ID: 101
+Last Person ID: 105
+<?xml version="1.0" encoding="UTF-8"?><people>
+    <person person_id="101">
+        <activity activity_id="501">
+            <description>Project meeting</description>
+            <name>Meeting</name>
+            <place>Torino</place>
+            <startdate>2018-01-15T09:00:00.0</startdate>
+            <type>WorkMeeting</type>
+        </activity>
+        <birthdate>1980-06-20</birthdate>
+        <firstname>george</firstname>
+        <lastname>michael</lastname>
+    </person>
+    <person person_id="102">
+        <activity activity_id="502">
+            <description>Fundraising event</description>
+            <name>Fundraising</name>
+            <place>Trento</place>
+            <startdate>2018-01-16T09:00:00.0</startdate>
+            <type>Culture</type>
+        </activity>
+        <birthdate>1992-03-19</birthdate>
+        <firstname>Fillipo</firstname>
+        <lastname>Max</lastname>
+    </person>
+    <person person_id="103">
+        <activity activity_id="503">
+            <description>Hiking in monte bianco</description>
+            <name>Hiking</name>
+            <place>Torino</place>
+            <startdate>2018-01-17T09:00:00.0</startdate>
+            <type>Sport</type>
+        </activity>
+        <birthdate>1995-04-21</birthdate>
+        <firstname>Franco</firstname>
+        <lastname>Charli</lastname>
+    </person>
+    <person person_id="104">
+        <activity activity_id="504">
+            <description>Alumnus Get together</description>
+            <name>Get Together</name>
+            <place>Venezia</place>
+            <startdate>2018-01-23T09:00:00.0</startdate>
+            <type>Social</type>
+        </activity>
+        <birthdate>1985-09-22</birthdate>
+        <firstname>Ali</firstname>
+        <lastname>Muhammad</lastname>
+    </person>
+    <person person_id="105">
+        <activity activity_id="505">
+            <description>Summer school</description>
+            <name>Summer School</name>
+            <place>Milano</place>
+            <startdate>2018-01-30T09:00:00.0</startdate>
+            <type>Sport</type>
+        </activity>
+        <birthdate>1987-08-23</birthdate>
+        <firstname>Hamid</firstname>
+        <lastname>Raza</lastname>
+    </person>
+</people>
+
+STEP 3.1 JSON => Request #1 GET BASE_URL/person Accept: APPLICATION/JSON
+[
+  {
+    "lastname":"michael",
+    "firstname":"george",
+    "birthdate":"1980-06-20",
+    "person_id":101,
+    "activity":[
+      {
+        "name":"Meeting",
+        "description":"Project meeting",
+        "place":"Torino",
+        "type":"WorkMeeting",
+        "oldTypes":[],
+        "startdate":"2018-01-15T09:00:00.0",
+        "activity_id":501
+      }
+    ]
+  },
+  {
+    "lastname":"Max",
+    "firstname":"Fillipo",
+    "birthdate":"1992-03-19",
+    "person_id":102,
+    "activity":[
+      {
+        "name":"Fundraising",
+        "description":"Fundraising event",
+        "place":"Trento",
+        "type":"Culture",
+        "oldTypes":[],
+        "startdate":"2018-01-16T09:00:00.0",
+        "activity_id":502
+      }
+    ]
+  },
+  {
+    "lastname":"Charli",
+    "firstname":"Franco",
+    "birthdate":"1995-04-21",
+    "person_id":103,
+    "activity":[
+      {
+        "name":"Hiking",
+        "description":"Hiking in monte bianco",
+        "place":"Torino",
+        "type":"Sport",
+        "oldTypes":[],
+        "startdate":"2018-01-17T09:00:00.0",
+        "activity_id":503
+      }
+    ]
+  },
+  {
+    "lastname":"Muhammad",
+    "firstname":"Ali",
+    "birthdate":"1985-09-22",
+    "person_id":104,
+    "activity":[
+      {
+        "name":"Get Together",
+        "description":"Alumnus Get together",
+        "place":"Venezia",
+        "type":"Social",
+        "oldTypes":[],
+        "startdate":"2018-01-23T09:00:00.0",
+        "activity_id":504
+      }
+    ]
+  },
+  {
+    "lastname":"Raza",
+    "firstname":"Hamid",
+    "birthdate":"1987-08-23",
+    "person_id":105,
+    "activity":[
+      {
+        "name":"Summer School",
+        "description":"Summer school",
+        "place":"Milano",
+        "type":"Sport",
+        "oldTypes":[],
+        "startdate":"2018-01-30T09:00:00.0",
+        "activity_id":505
+      }
+    ]
+  }
+]
+Total number of people is: 5
+First Persin ID: 101
+Last Person ID: 105
+
+
+STEP 3.2 XML => Request #2 GET /person/101 Accept: APPLICATION/XML
+<?xml version="1.0" encoding="UTF-8"?><person person_id="101">
+    <activity activity_id="501">
+        <description>Project meeting</description>
+        <name>Meeting</name>
+        <place>Torino</place>
+        <startdate>2018-01-15T09:00:00.0</startdate>
+        <type>WorkMeeting</type>
+    </activity>
+    <birthdate>1980-06-20</birthdate>
+    <firstname>george</firstname>
+    <lastname>michael</lastname>
+</person>
+
+STEP 3.2 JSON => Request #2 GET /person/101 Accept: APPLICATION/JSON
+{
+  "lastname":"michael",
+  "firstname":"george",
+  "birthdate":"1980-06-20",
+  "person_id":101,
+  "activity":[
+    {
+      "name":"Meeting",
+      "description":"Project meeting",
+      "place":"Torino",
+      "type":"WorkMeeting",
+      "oldTypes":[],
+      "startdate":"2018-01-15T09:00:00.0",
+      "activity_id":501
+    }
+  ]
+}
+
+
+STEP 3.3 XML => Request #3 PUT /person/101 Accept:APPLICATION/XML Content-type:APPLICATION/XML
+
+=> Result: OK 
+=> Http status: 201
+=> POST parameters : <person> <firstname>PersonSixth</firstname> </person>
+
+Request# 2 Get the updated Person GET /person/101 Accept: APPLICATION/XML
+<?xml version="1.0" encoding="UTF-8"?><person person_id="101">
+    <activity activity_id="501">
+        <description>Project meeting</description>
+        <name>Meeting</name>
+        <place>Torino</place>
+        <startdate>2018-01-15T09:00:00.0</startdate>
+        <type>WorkMeeting</type>
+    </activity>
+    <birthdate>1980-06-20</birthdate>
+    <firstname>PersonSixth</firstname>
+    <lastname>michael</lastname>
+</person>
+
+STEP 3.3 JSON => Request #3 PUT /person/101 Accept:APPLICATION/JSON Content-type:APPLICATION/JSON
+
+=> Result: OK 
+=> Http status: 201
+=> POST parameters : {"firstname": "Firstman"}
+
+Request# 2 Get the updated Person GET /person/101 Accept: APPLICATION/XML
+<?xml version="1.0" encoding="UTF-8"?><person person_id="101">
+    <activity activity_id="501">
+        <description>Project meeting</description>
+        <name>Meeting</name>
+        <place>Torino</place>
+        <startdate>2018-01-15T09:00:00.0</startdate>
+        <type>WorkMeeting</type>
+    </activity>
+    <birthdate>1980-06-20</birthdate>
+    <firstname>Firstman</firstname>
+    <lastname>michael</lastname>
+</person>
+
+
+
+STEP 3.4 XML => Request #4 POST /person Accept:APPLICATION/XML Content-type:APPLICATION/XML
+
+=> Parameters : <?xml version="1.0" encoding="UTF-8"?>
+ <person> 
+<firstname>PersonSixth</firstname>
+ <lastname>xyzSixth</lastname>
+ <birthdate>1989-04-29</birthdate> 
+<activity> 
+     <name>PingPong</name>
+     <description>Playig ping pong</description>
+     <place>SportsComplex</place>
+    <startdate>2016-14-13T11:40:00.0</startdate>
+ </activity>
+</person>
+
+=> Result: OK 
+=> Http status: 200
+<?xml version="1.0" encoding="UTF-8"?><person person_id="106">
+    <activity activity_id="506">
+        <description>Playig ping pong</description>
+        <name>PingPong</name>
+        <place>SportsComplex</place>
+        <startdate>2016-14-13T11:40:00.0</startdate>
+    </activity>
+    <birthdate>1989-04-29</birthdate>
+    <firstname>PersonSixth</firstname>
+    <lastname>xyzSixth</lastname>
+</person>
+
+STEP 3.4 JSON => Request #4 POST /person Accept:APPLICATION/JSON Content-type:APPLICATION/JSON
+
+=> Result: OK 
+=> Http status: 200
+=> Parameters : {
+        "lastname": "michael1",
+        "firstname": "george9",
+        "birthdate": "1980-06-20",
+        "activity": [
+            {
+                "name": "Meeting",
+                "description": "business meeting",
+                "place": "Torino",
+                "type": "WorkMeeting",
+                "startdate": "2018-01-15T09:00:00.0"
+            }
+        ]
+    }
+
+
+
+Step#3.5 Request #5 DELETE /person/106 Accept:APPLICATION/XML Content-type:APPLICATION/XML
+Http status code :204=> Request #2 GET /person/106 Accept: APPLICATION/XML if it return 404 result is OK
+=> Result: OK 
+
+
+Step 3.6 XML => Request #6 GET /activity_types Accept:APPLICATION/XML
+
+=> Result: OK 
+=> Http status: 200
+<?xml version="1.0" encoding="UTF-8"?><activityTypes>
+    <activity_Type>Sport</activity_Type>
+    <activity_Type>Social</activity_Type>
+    <activity_Type>Culture</activity_Type>
+    <activity_Type>WorkMeeting</activity_Type>
+</activityTypes>
+
+
+
+Step 3.6 JSON => Request #6 GET /activity_types Accept:APPLICATION/JSON
+
+=> Result: OK
+=> Http status: 200
+[
+  "Sport",
+  "Social",
+  "Culture",
+  "WorkMeeting"
+]
+
+
+Step# 3.7 XML => Request#7 (GET BASE_URL/person/{id}/{activity_type})
+=> check if person have at least one Activity
+
+=> Result: OK 
+=> Http status: 200
+<?xml version="1.0" encoding="UTF-8"?><activities>
+    <activity activity_id="501">
+        <description>Project meeting</description>
+        <name>Meeting</name>
+        <place>Torino</place>
+        <startdate>2018-01-15T09:00:00.0</startdate>
+        <type>WorkMeeting</type>
+    </activity>
+</activities>
+=> Result: OK => Person with ID:101 have atleast one activity type
+
+=> Result: OK 
+=> Http status: 200
+<?xml version="1.0" encoding="UTF-8"?><activities>
+    <activity activity_id="505">
+        <description>Summer school</description>
+        <name>Summer School</name>
+        <place>Milano</place>
+        <startdate>2018-01-30T09:00:00.0</startdate>
+        <type>Sport</type>
+    </activity>
+</activities>
+=> Result: OK => Person with ID:105 have atleast one activity type
+
+
+
+Step# 3.7 JSON => Request#7 (GET BASE_URL/person/{id}/{activity_type})
+=> Check if person have at least one Activity
+
+=> Result: OK
+=> Http status: 200
+[
+  {
+    "name":"Meeting",
+    "description":"Project meeting",
+    "place":"Torino",
+    "type":"WorkMeeting",
+    "oldTypes":[],
+    "startdate":"2018-01-15T09:00:00.0",
+    "activity_id":501
+  }
+]=> Person with ID:101 have atleast one activity type
+
+=> Result: OK
+=> Http status: 200
+[
+  {
+    "name":"Summer School",
+    "description":"Summer school",
+    "place":"Milano",
+    "type":"Sport",
+    "oldTypes":[],
+    "startdate":"2018-01-30T09:00:00.0",
+    "activity_id":505
+  }
+]=> Person with ID:105 have atleast one activity type
+
+
+
+Step 3.8 XML =>Request #8 GET /person/105/Sport/505 Accept:APPLICATION/XML
+
+=> Result: OK 
+=> Http status: 200
+<?xml version="1.0" encoding="UTF-8"?><activity activity_id="505">
+    <description>Summer school</description>
+    <name>Summer School</name>
+    <place>Milano</place>
+    <startdate>2018-01-30T09:00:00.0</startdate>
+    <type>Sport</type>
+</activity>
+
+Step 3.8 JSON =>Request #8 GET /person/105/Sport/505 Accept:APPLICATION/JSON
+
+=> Result: OK
+=> Http status: 200
+{
+  "name":"Summer School",
+  "description":"Summer school",
+  "place":"Milano",
+  "type":"Sport",
+  "oldTypes":[],
+  "startdate":"2018-01-30T09:00:00.0",
+  "activity_id":505
+}
+
+Step# 3.9 XML => Request #9 => POST /person/101/WorkMeeting Accept:APPLICATION/XML Content-Type:APPLICATION/XML
+
+=> Parameters : Sport
+
+=> Result: OK 
+=> Http status: 200
+<?xml version="1.0" encoding="UTF-8"?><person person_id="101">
+    <activity activity_id="501">
+        <description>Project meeting</description>
+        <name>Meeting</name>
+        <oldTypes>WorkMeeting</oldTypes>
+        <place>Torino</place>
+        <startdate>2018-01-15T09:00:00.0</startdate>
+        <type>Sport</type>
+    </activity>
+    <birthdate>1980-06-20</birthdate>
+    <firstname>Firstman</firstname>
+    <lastname>michael</lastname>
+</person>
+Step# 3.9  JSON => Request #9 => POST /person/101/Sport Accept:APPLICATION/JSON Content-Type:APPLICATION/JSON
+=> Result: OK 
+=> Http status: 200
+=> Parameters : Culture
+Step# 3.9  JSON => Request #7 => GET /person/101/Culture Accept:APPLICATION/JSON
+=> Result: OK
+=> Http status: 200
+[
+  {
+    "name":"Meeting",
+    "description":"Project meeting",
+    "place":"Torino",
+    "type":"Culture",
+    "oldTypes":[
+      "Sport",
+      "WorkMeeting"
+    ],
+    "startdate":"2018-01-15T09:00:00.0",
+    "activity_id":501
+  }
+]
+
+
+Step# 3.10  XML => Request #10 => PUT /person/105/Sport/505 Accept:APPLICATION/XML
+=> Parameters : 
+<activity> 
+	<type>Social</type> 
+</activity>
+
+Step 3.10 XML =>Request #8 GET /person/105/Social/505 Accept:APPLICATION/XML
+
+=> Result: OK 
+=> Http status: 200
+<?xml version="1.0" encoding="UTF-8"?><activity activity_id="505">
+    <description>Summer school</description>
+    <name>Summer School</name>
+    <place>Milano</place>
+    <startdate>2018-01-30T09:00:00.0</startdate>
+    <type>Social</type>
+</activity>
+
+
+Step# 3.10 JSON => Request #10 => PUT /person/105/Social/505 Accept:APPLICATION/JSON
+=> Result: OK 
+=> Http status: 201
+=> Parameters : { 
+	"type":"Sport"
+}
+
+Step 3.10 JSON =>Request #8 GET /person/105/Sport/505 Accept:APPLICATION/JSON
+
+=> Result: OK
+=> Http status: 200
+{
+  "name":"Summer School",
+  "description":"Summer school",
+  "place":"Milano",
+  "type":"Sport",
+  "oldTypes":[],
+  "startdate":"2018-01-30T09:00:00.0",
+  "activity_id":505
+}
+
+
+Step# 3.11 XML => Request #11 => GET /person/105/Sport?before=2017-01-22T12:00:00.0&after=2018-02-28T09:00:00.0 Accept:APPLICATION/XML
+=> Result: OK 
+=> Http status: 200
+<?xml version="1.0" encoding="UTF-8"?><activities>
+    <activity activity_id="505">
+        <description>Summer school</description>
+        <name>Summer School</name>
+        <place>Milano</place>
+        <startdate>2018-01-30T09:00:00.0</startdate>
+        <type>Sport</type>
+    </activity>
+</activities>
+
+Step# 3.11 JSON => Request #11 => GET /person/105/Sport?before=2017-01-22T12:00:00.0&after=2018-02-28T09:00:00.0 Accept:APPLICATION/JSON
+=> Result: OK
+=> Http status: 200
+[
+  {
+    "name":"Summer School",
+    "description":"Summer school",
+    "place":"Milano",
+    "type":"Sport",
+    "oldTypes":[],
+    "startdate":"2018-01-30T09:00:00.0",
+    "activity_id":505
+  }
+]

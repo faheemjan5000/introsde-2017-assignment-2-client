@@ -118,7 +118,7 @@ static{
 			      +  "\n    <startdate>2016-14-13T11:40:00.0</startdate>"
 			      +  "\n </activity>"
 			      +  "\n</person>";
-		Element personElement = (Element) doPostPutXML(conn,parms,"POST").item(0);
+		Element personElement = (Element) doPostPutXML(conn,parms,"POST").getElementsByTagName("person").item(0);
 		int newId=Integer.parseInt( personElement.getAttribute("person_id"));
 		
 		//Step 3.4 JSON => create a new person
@@ -141,7 +141,7 @@ static{
 		doPostPutJSON(conn,parms,"POST");
 		
 		//Step 3.5 => Delete Person
-		System.out.println("\n\n\nStep#3.5 Request #5 DELETE /person/"+newId +" Accept:APPLICATION/XML Content-type:APPLICATION/XML/n");
+		System.out.println("\n\n\nStep#3.5 Request #5 DELETE /person/"+newId +" Accept:APPLICATION/XML Content-type:APPLICATION/XML\n");
 		conn=getConnection(BaseURL.toString()+"/person/"+newId);
 		deletePerson(conn);
 		System.out.println("=> Request #2 GET /person/"+newId +" Accept: APPLICATION/XML if it return 404 result is OK\n");
@@ -229,87 +229,34 @@ static{
 		conn=getConnection(BaseURL.toString()+"/person/"+last_person_id+"/"+activity_type+"/"+activity_id);
 		getActivityTypesJSON(conn,0);
 		
-		//Step 3.9 XML  => (POST /person/{id}/{activity_type})
-		//Request7
-		System.out.println("\n\n\nStep# 3.9 XML => Request #7 => GET /person/"
-				+first_person_id+"/"
-				+activityTypeNodeList.item(0).getTextContent()
-				+" Accept:APPLICATION/XML\n");
-		conn=getConnection(BaseURL.toString()+"/person/"+first_person_id+"/"+activityTypeNodeList.item(0).getTextContent());
-		NodeList nodeList=getListXML(conn,1,"activity");
-		int count;
-		if(nodeList==null)
-			count =0;
-		else
-			count= nodeList.getLength();
-		//Request9
-		System.out.println("Step# 3.9 XML => Request #9 => POST /person/"
-				+first_person_id
-				+"/"+activityTypeNodeList.item(0).getTextContent()
-				+" Accept:APPLICATION/XML Content-Type:APPLICATION/XML\n");
-		conn=getConnection(BaseURL.toString()+"/person/"+first_person_id+"/"+activityTypeNodeList.item(0).getTextContent());
-		parms="<activity> " 
-			      +	"\n	<name>Swimming</name>"
-			      +	"\n	<description>Swimming in the river</description>"
-			      +	"\n	<place>Adige river</place>"
-			      + 	"\n	<type>"+activityTypeNodeList.item(0).getTextContent() +"</type> "
-			      +	"\n	<startdate>2017-12-28T08:50:00.0</startdate>"
-			      +	"\n</activity>";
-		doPostPutXML(conn,parms,"POST");
-		//Request7
-		System.out.println("Step# 3.9 XML => Request #7 => GET /person/"
-				+first_person_id
-				+"/"+activityTypeNodeList.item(0).getTextContent()
-				+" Accept:APPLICATION/XML");
-		conn=getConnection(BaseURL.toString()+"/person/"+first_person_id+"/"+activityTypeNodeList.item(0).getTextContent());
-		if(getListXML(conn,1,"activity").getLength()==count+1) {
-			System.out.println("Step# => 3.9 Final Result After Request 7=>9=>7 XML");
-			System.out.println("=> Result: OK");
-		}else {
-			System.out.println("Step# => 3.9 Final Result After Request 7=>9=>7 XML");
-			System.out.println("=> Result: ERROR");
-		}
 		
-		//Step 3.9 JSON 
-		//Request7
-		System.out.println("\nStep# 3.9  JSON => Request #7 => GET /person/"
-				+first_person_id+"/"
-				+activityTypeNodeList.item(0).getTextContent()
-				+" Accept:APPLICATION/JSON");
-		conn=getConnection(BaseURL.toString()+"/person/"+first_person_id+"/"+activityTypeNodeList.item(0).getTextContent());
-		JSONArray array=getActivityTypesJSON(conn,1);
-		if(array==null)
-			count =0;
-		else
-			count= array.length();
-		//Request9
+		
+		
+		//Step 3.9 XML  => (POST /person/{id}/{activity_type})
+
+		System.out.println("\n\nStep# 3.9 XML => Request #9 => POST /person/"
+				+first_person_id
+				+"/"+activityTypeNodeList.item(3).getTextContent()
+				+" Accept:APPLICATION/XML Content-Type:APPLICATION/XML\n");
+		conn=getConnection(BaseURL.toString()+"/person/"+first_person_id+"/"+activityTypeNodeList.item(3).getTextContent());
+		parms=activityTypeNodeList.item(0).getTextContent();
+		doPostPutXML(conn,parms,"POST");
+
+		
 		System.out.println("Step# 3.9  JSON => Request #9 => POST /person/"
 				+first_person_id
 				+"/"+activityTypeNodeList.item(0).getTextContent()
 				+" Accept:APPLICATION/JSON Content-Type:APPLICATION/JSON");
 		conn=getConnection(BaseURL.toString()+"/person/"+first_person_id+"/"+activityTypeNodeList.item(0).getTextContent());
-		parms="{ " 
-			      +	"\n	\"name\":\"Swimming\","
-			      +	"\n	\"description\":\"Swimming in the river\","
-			      +	"\n	\"place\":\"Adige river\","
-			      + "\n	\"type\":"+"\""+ activityTypeNodeList.item(0).getTextContent() +"\","
-			      +	"\n	\"startdate\":\"2017-12-28T08:50:00.0\""
-			      +	"\n}";
+		parms=activityTypeNodeList.item(2).getTextContent();
 		doPostPutJSON(conn,parms,"POST");
 		//Request7
 		System.out.println("Step# 3.9  JSON => Request #7 => GET /person/"
 				+first_person_id+"/"
-				+activityTypeNodeList.item(0).getTextContent()
+				+activityTypeNodeList.item(2).getTextContent()
 				+" Accept:APPLICATION/JSON");
-		conn=getConnection(BaseURL.toString()+"/person/"+first_person_id+"/"+activityTypeNodeList.item(0).getTextContent());
-		
-		if(getActivityTypesJSON(conn,1).length()==count+1) {
-			System.out.println("Step# => 3.9 Final Result After Request 7=>9=>7 JSON");
-			System.out.println("=> Result: OK");
-		}else {
-			System.out.println("Step# => 3.9 Final Result After Request 7=>9=>7 JSON");
-			System.out.println("=> Result: ERROR");
-		}
+		conn=getConnection(BaseURL.toString()+"/person/"+first_person_id+"/"+activityTypeNodeList.item(2).getTextContent());
+		getActivityTypesJSON(conn,1);
 		
 		//Step 3.10 XML => update the value for the {activity_type}
 		//Request 10
@@ -320,32 +267,31 @@ static{
 				+" Accept:APPLICATION/XML");
 		conn=getConnection(BaseURL.toString()+"/person/"+last_person_id+"/"+activity_type+"/"+activity_id);
 		parms="\n<activity> "
-			      + 	"\n	<type>"+activity_type +"</type> "
+			      + 	"\n	<type>"+activityTypeNodeList.item(1).getTextContent() +"</type> "
 			      +	"\n</activity>";
 		doPostPutXML(conn,parms,"PUT");
-		//Request 6
-		System.out.println("=>Request #6 GET /activity_types Accept:APPLICATION/XML");
-		conn=getConnection(BaseURL.toString()+"/activity_types");
-		getListXML(conn,2,"activity_Type");
-		System.out.println("Step# 3.10 Client cant add a new type, it must be from exisitng activity type list");
+		//Step 3.8 XML => Request #8 GET /person/{id}/{activity_type}/{activity_id} => Get Activities
+				System.out.println("\nStep 3.10 XML =>Request #8 GET /person/"+last_person_id+"/"+activityTypeNodeList.item(1).getTextContent()+"/"+activity_id+" Accept:APPLICATION/XML\n");
+				conn=getConnection(BaseURL.toString()+"/person/"+last_person_id+"/"+activityTypeNodeList.item(1).getTextContent()+"/"+activity_id);
+				getListXML(conn,1,"activity");
+		
 		
 		//Step 3.10 JSON => update the value for the {activity_type}
 		//Request 10
-		System.out.println("\nStep# 3.10 JSON => Request #10 => PUT /person/"
+		System.out.println("\n\nStep# 3.10 JSON => Request #10 => PUT /person/"
 				+last_person_id+"/"
-				+activity_type+"/"
+				+activityTypeNodeList.item(1).getTextContent()+"/"
 				+activity_id
 				+" Accept:APPLICATION/JSON");
-		conn=getConnection(BaseURL.toString()+"/person/"+last_person_id+"/"+activity_type+"/"+activity_id);
+		conn=getConnection(BaseURL.toString()+"/person/"+last_person_id+"/"+activityTypeNodeList.item(1).getTextContent()+"/"+activity_id);
 		parms="{ " 
 			      + "\n	\"type\":"+"\""+ activity_type +"\""
 			      +	"\n}";
 		doPostPutJSON(conn,parms,"PUT");
-		//Request 6
-		System.out.println("=>Request #6 GET /activity_types Accept:APPLICATION/JSON");
-		conn=getConnection(BaseURL.toString()+"/activity_types");
-		getActivityTypesJSON(conn,2);
-		System.out.println("Step# 3.10 Client cant add a new type, it must be from exisitng activity type list");
+		//Step 3.10 JSON => Request #8 GET /person/{id}/{activity_type}/{activity_id} => Get Activities
+		System.out.println("\nStep 3.10 JSON =>Request #8 GET /person/"+last_person_id+"/"+activity_type+"/"+activity_id+" Accept:APPLICATION/JSON\n");
+		conn=getConnection(BaseURL.toString()+"/person/"+last_person_id+"/"+activity_type+"/"+activity_id);
+		getActivityTypesJSON(conn,0);
 		
 		
 		//Step 3.11 XML
@@ -380,16 +326,16 @@ static{
 		if(min>=1) {
 			arr = new JSONArray(body.toString());
 			if(arr.length()>=min) {
-    				System.out.println("=> Result: OK");
- 				System.out.println("=> Http status: " + conn.getResponseCode());
+    				System.out.println("\n=> Result: OK");
+ 				System.out.println("\n=> Http status: " + conn.getResponseCode()+"\n");
     			}else {
     				System.out.println("=> Result: ERROR");
     			}
 		}
 		// server does not return JSON array
 		else {
-			System.out.println("=> Result: OK");
-			System.out.println("=> Http status: " + conn.getResponseCode());
+			System.out.println("\n=> Result: OK");
+			System.out.println("\n=> Http status: " + conn.getResponseCode()+"\n");
 		}	
 		
 		System.out.println(JsonWriter.formatJson(body.toString()));
@@ -404,10 +350,10 @@ static{
 			
 		//server is expected to return NodeList
         	if(list.getLength()>=min) {
-        		System.out.println("=> Result: OK ");
-        		System.out.println("=> Http status: " + conn.getResponseCode());
+        		System.out.println("\n=> Result: OK ");
+        		System.out.println("\n=> Http status: " + conn.getResponseCode()+"\n");
         	}else {
-        		System.out.println("=> Result: ERROR");
+        		System.out.println("\n=> Result: ERROR\n");
         	}
 		printDocument(doc, System.out);
 		return list;
@@ -453,23 +399,23 @@ static{
 					+ conn.getResponseCode());
 		}
 		else {
-			System.out.println("=> Result: OK ");
-    			System.out.println("=> Http status: " + conn.getResponseCode());
-    			System.out.println("=> Parameters : " + parms);
+			System.out.println("\n=> Result: OK ");
+    			System.out.println("\n=> Http status: " + conn.getResponseCode());
+    			System.out.println("\n=> Parameters : " + parms+"\n");
 		}
 			
 		
 	}
 
 	//Step 3.4 ========= 3.9 ========== 3.10 ========= XML
-	private static NodeList doPostPutXML(HttpURLConnection conn, String parms, String input) throws Exception {
-		NodeList nodeList=null;
+	private static Document doPostPutXML(HttpURLConnection conn, String parms, String input) throws Exception {
+		Document doc = null;
 		conn.setRequestProperty("Accept", "application/xml");
 		conn.setRequestProperty("Content-type", "application/xml");
 		conn.setRequestMethod(input);
 		
 		
-		System.out.println("=> Parameters : " + parms);
+		System.out.println("\n=> Parameters : " + parms+"\n");
 		conn.setDoOutput( true );
 		conn.setDoInput( true );
 		
@@ -482,17 +428,16 @@ static{
 		if (responseCode != 200 && responseCode != 201) {
 			throw new RuntimeException("Failed : HTTP error code : "
 					+ conn.getResponseCode());
-		}else {
-			if(input== "POST") {
+		}else 
+			if (input.equals("POST")) {
+				System.out.println("\n=> Result: OK ");
+				System.out.println("\n=> Http status: " + responseCode+"\n");
 				InputStream stream= conn.getInputStream();
-				Document doc = parseXML(stream);
-				nodeList =doc.getElementsByTagName("person");
+				doc = parseXML(stream);
+				printDocument(doc, System.out);
 			}
-
-			System.out.println("=> Result: OK ");
-			System.out.println("=> Http status: " + responseCode);
-		}
-		return nodeList;
+		
+		return doc;
 	}
 
 
@@ -514,9 +459,9 @@ static{
 			throw new RuntimeException("Failed : HTTP error code : "
 					+ conn.getResponseCode());
 		}else {
-			System.out.println("=> Result: OK ");
-			System.out.println("=> Http status: " + responseCode);
-			System.out.println("=> POST parameters : " + parms);
+			System.out.println("\n=> Result: OK ");
+			System.out.println("\n=> Http status: " + responseCode);
+			System.out.println("\n=> POST parameters : " + parms+"\n");
 		}
 	}
 
