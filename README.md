@@ -1,4 +1,4 @@
-# introsde-2017-assignment-3-client
+# introsde-2017-assignment-2-client
 
 Name : Main muhammad faheem - Jan  
 Email : main.jan@unitn.it  
