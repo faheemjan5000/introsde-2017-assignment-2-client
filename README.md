@@ -16,7 +16,7 @@ Client Git riop: https://github.com/faheemjan5000/introsde-2017-assignment-2-cli
 ### About the Code:
 
 I created one Client Class named as "Client" which has some attributes, methods and main method defined.   
-like getting a person by id, updating person,deleting person, printing activities etc etc.there is one other class named as "" there is one log file which   
+like getting a person by id, updating person,deleting person, printing activities etc etc.there is one other class named as "SysStreamsLogger.java" which do all the actions needed to log things. there is one log file which   
 has all the ouput saved.there is the Build file which has all the targets written and ivy.xml file which has different  
 dependencies needed for my project.    
 
